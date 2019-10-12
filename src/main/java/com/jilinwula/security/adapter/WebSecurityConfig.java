@@ -11,7 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Bean
+   /* @Bean
     public PasswordEncoder passwordEncoder() {
         return new CleartextPasswordEncoder();
     }
@@ -21,16 +21,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication()
                 .passwordEncoder(passwordEncoder())
                 .withUser("jilinwula")
-                .password(passwordEncoder().encode("jilinwula.com"))
+                .password(passwordEncoder().encode("jilinwula.coms"))
                 .roles("ADMIN");
-    }
+    }*/
 
-    @Override
+   /* @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin()
                 .and()
                 .authorizeRequests()
                 .anyRequest()
                 .authenticated();
-    }
+    }*/
 }
