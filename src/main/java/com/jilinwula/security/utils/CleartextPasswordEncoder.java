@@ -7,11 +7,11 @@ import org.springframework.stereotype.Component;
 public class CleartextPasswordEncoder implements PasswordEncoder {
     @Override
     public String encode(CharSequence charSequence) {
-        return charSequence.toString();
+        return charSequence.toString().toUpperCase();
     }
 
     @Override
     public boolean matches(CharSequence charSequence, String s) {
-        return s.equals(charSequence.toString());
+        return s.equals(charSequence.toString().toUpperCase());
     }
 }
