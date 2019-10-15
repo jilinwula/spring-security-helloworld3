@@ -1,6 +1,6 @@
 package com.jilinwula.security.adapter;
 
-import com.jilinwula.security.utils.CleartextPasswordEncoder;
+import com.jilinwula.security.utils.SimplePasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +18,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new CleartextPasswordEncoder();
+        return new SimplePasswordEncoder();
     }
 
     @Override
@@ -28,15 +28,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin()
-                .loginPage("")
-                .loginProcessingUrl("")
-//                .successHandler("")
-//                .failureHandler("")
+        http.formLogin() // 表单登陆
+                .loginPage("/login.html") // 登陆页面
                 .and()
-                .authorizeRequests()
-                .antMatchers("").permitAll()
-                .anyRequest()
-                .authenticated();
+                .authorizeRequests() // 对请求进行授权
+                .anyRequest() // 任何请求
+                .authenticated(); // 都需要身份认证
     }
 }

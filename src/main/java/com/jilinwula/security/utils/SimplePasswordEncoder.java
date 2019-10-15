@@ -4,7 +4,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CleartextPasswordEncoder implements PasswordEncoder {
+public class SimplePasswordEncoder implements PasswordEncoder {
     @Override
     public String encode(CharSequence charSequence) {
         return charSequence.toString().toUpperCase();
