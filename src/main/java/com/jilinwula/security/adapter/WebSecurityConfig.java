@@ -30,8 +30,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin() // 表单登陆
                 .loginPage("/login.html") // 登陆页面
+                .loginProcessingUrl("/login/oneself") // 登陆表单提交请求
                 .and()
                 .authorizeRequests() // 对请求进行授权
+                .antMatchers("/login.html") // 指定相应的请求
+                .permitAll() // 不需要验证
                 .anyRequest() // 任何请求
                 .authenticated(); // 都需要身份认证
     }

@@ -21,6 +21,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         UserInfo userInfo = userInfoRepository.findByUsername(s);
 
-        return new User(userInfo.getUsername(), userInfo.getPassword(), false, true, true, true, AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
+        return new User(userInfo.getUsername(), userInfo.getPassword(), true, true, true, true, AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
     }
 }
