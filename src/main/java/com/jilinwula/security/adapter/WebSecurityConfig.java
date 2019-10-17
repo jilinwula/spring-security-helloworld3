@@ -16,6 +16,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    private SuccessHandler successHandler;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new SimplePasswordEncoder();
@@ -30,7 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin() // 表单登陆
                 .loginPage("/login.html") // 登陆页面
-                .loginProcessingUrl("/login/oneself") // 登陆表单提交请求
+                .loginProcessingUrl("/security/login/oneself") // 登陆表单提交请求
                 .and()
                 .authorizeRequests() // 对请求进行授权
                 .antMatchers("/login.html") // 指定相应的请求
