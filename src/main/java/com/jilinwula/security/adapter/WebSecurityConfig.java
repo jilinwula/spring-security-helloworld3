@@ -31,10 +31,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().disable()
+        http.csrf().disable()
                 .formLogin() // 表单登陆
                 .loginPage("/login.html") // 登陆页面
-                .loginProcessingUrl("/security/login/oneself") // 登陆表单提交请求
+                .loginProcessingUrl("/login/oneself") // 登陆表单提交请求
                 .and()
                 .authorizeRequests() // 对请求进行授权
                 .antMatchers("/login.html") // 指定相应的请求
