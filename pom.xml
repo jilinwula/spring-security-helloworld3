@@ -60,6 +60,11 @@
             <version>1.18.4</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.52.sec06</version>
+        </dependency>
     </dependencies>
 
     <build>
