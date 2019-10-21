@@ -3,6 +3,7 @@ package com.jilinwula.security.controller;
 import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.LineCaptcha;
 import cn.hutool.captcha.ShearCaptcha;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,7 +16,8 @@ import java.util.Map;
 @RestController
 public class HelloWorldController {
 
-    private static ShearCaptcha lineCaptcha = CaptchaUtil.createShearCaptcha(150, 40, 4, 5);
+    @Autowired
+    private ShearCaptcha shearCaptcha;
 
     @GetMapping("/helloworld")
     public Object helloworld(HttpServletRequest request) {
@@ -27,7 +29,7 @@ public class HelloWorldController {
 
     @GetMapping("code/image")
     public void codeImage(HttpServletResponse response) throws IOException {
-        lineCaptcha.createCode();
-        lineCaptcha.write(response.getOutputStream());
+        shearCaptcha.createCode();
+        shearCaptcha.write(response.getOutputStream());
     }
 }

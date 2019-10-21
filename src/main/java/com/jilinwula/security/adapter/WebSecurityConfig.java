@@ -1,5 +1,7 @@
 package com.jilinwula.security.adapter;
 
+import cn.hutool.captcha.CaptchaUtil;
+import cn.hutool.captcha.ShearCaptcha;
 import com.jilinwula.security.filter.CodeImageFilter;
 import com.jilinwula.security.utils.SimplePasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new SimplePasswordEncoder();
+    }
+
+    @Bean
+    ShearCaptcha shearCaptcha() {
+        ShearCaptcha shearCaptcha = CaptchaUtil.createShearCaptcha(150, 40, 4, 5);
+        return shearCaptcha;
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.jilinwula.security.filter;
 
+import cn.hutool.captcha.ShearCaptcha;
 import com.jilinwula.security.exception.VodeImageException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -15,6 +17,9 @@ import java.io.IOException;
 @Component
 public class CodeImageFilter extends OncePerRequestFilter {
 
+    @Autowired
+    private ShearCaptcha shearCaptcha;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException, AuthenticationException {
         if (!request.getRequestURI().equals("/security/login/oneself")) {
@@ -24,6 +29,9 @@ public class CodeImageFilter extends OncePerRequestFilter {
         String codeImage = request.getParameter("codeImage");
         if (StringUtils.isEmpty(codeImage)) {
             throw new VodeImageException("验证码为空");
+        }
+        if (!shearCaptcha.verify(codeImage)) {
+            throw new VodeImageException("验证码错误");
         }
         filterChain.doFilter(request, response);
     }
